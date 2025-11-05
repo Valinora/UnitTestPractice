@@ -50,6 +50,13 @@ TEST(PasswordTest, alternating_case)
 	ASSERT_EQ(2, actual);
 }
 
+TEST(PasswordTest, special_characters_leading)
+{
+	Password my_password;
+	int actual = my_password.count_leading_characters("###abc");
+	ASSERT_EQ(3, actual);
+}
+
 TEST(PasswordTest, single_case) {
 	Password my_password;
 	bool actual = my_password.has_mixed_case("aaaaaaa");
@@ -60,4 +67,10 @@ TEST(PasswordTest, mixed_case) {
 	Password my_password;
 	bool actual = my_password.has_mixed_case("AaAaA");
 	ASSERT_EQ(true, actual);
+}
+
+TEST(PasswordTest, empty_string_mixed_case) {
+	Password my_password;
+	bool actual = my_password.has_mixed_case("");
+	ASSERT_EQ(false, actual);
 }
