@@ -1,5 +1,6 @@
 #include "Password.h"
 #include <string>
+#include <set>
 
 using std::string;
 
@@ -27,21 +28,23 @@ int Password::count_leading_characters(string phrase){
   receives a string and returns whether it has both at least one upper-case
   letter and at least one lower-case letter
 */
-bool Password::has_mixed_case(string pass){
-  string lower_copy = pass;
-  string upper_copy = pass;
-  
-  for(int i = 0; i < lower_copy.length(); i++){
-    lower_copy[i] = tolower(lower_copy[i]);
+bool Password::has_mixed_case(string str)
+{
+  bool found = false;
+  for(char c : str){
+    if( !found && c >= 'A' && c <= 'Z' ){
+      found = true;
+    }
+    else if( found && c >= 'a' && c <= 'z'){
+      return true;
+    }
   }
-  
-  for(int i = 0; i < upper_copy.length(); i++){
-    upper_copy[i] = toupper(upper_copy[i]);
-  }
-  
-  if(pass == lower_copy || pass == upper_copy){
-    return false;
-  }
-  
-  return true;
+  return false;
+}
+
+
+unsigned int Password::unique_characters(string input)
+{
+  std::set<char> unique_chars(input.begin(), input.end());
+  return unique_chars.size();
 }

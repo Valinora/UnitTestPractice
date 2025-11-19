@@ -21,5 +21,11 @@ public:
   letter and at least one lower-case letter
   */
   bool has_mixed_case(string);
+  
+  /*
+  Receives a string and returns a count of how many case-sensitive unique
+  characters there are.
+  */
+  unsigned int unique_characters(string);
 };
 #endif
